@@ -33,7 +33,6 @@ export default {
     itemClick(){
       this.$router.replace(this.path)
       console.log(this.path);
-      console.log(this.$route);
     }
   },
   computed:{

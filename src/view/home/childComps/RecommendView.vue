@@ -37,6 +37,6 @@
   .recommend-item img{
     width: 65px;
     height: 65px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 </style>

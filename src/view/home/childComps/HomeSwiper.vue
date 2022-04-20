@@ -1,5 +1,4 @@
 <template>
-  <div>
     <swiper class='homeSwiper'>
       <swiper-item v-for="item in banners" :key='item.key'>
         <a :href="item.link">
@@ -7,7 +6,6 @@
         </a>
       </swiper-item>
     </swiper>
-  </div>
 </template>
 
 <script>
