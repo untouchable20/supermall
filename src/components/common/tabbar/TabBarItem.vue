@@ -32,8 +32,7 @@ export default {
   methods:{
     itemClick(){
       this.$router.replace(this.path)
-      console.log(this.path);
-      console.log(this.$route);
+      console.log(this.path)
     }
   },
   computed:{

@@ -1,4 +1,5 @@
 
+//vue3 引入 下面两个
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -30,7 +31,7 @@ const routes = [
   }
 ]
 
-
+//vue3 创建
 
 const router = createRouter({
   routes,

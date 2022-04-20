@@ -1,6 +1,8 @@
 <template>
+<!--  在vue3 中插槽通过 v-slot:Name   还需在前面添加template     -->
+<!--  activeColor 设置字体颜色 没设置默认为#8cbb19-->
   <tab-bar>
-    <tab-bar-item path="/home">
+    <tab-bar-item path="/home" activeColor="">
       <template v-slot:item-icon><img src="~assets/img/tabbar/home.svg" alt="" ></template>
       <template v-slot:item-icon-active><img src="~assets/img/tabbar/home-active.svg" alt=""></template>
       <template v-slot:item-text> <div >首页</div></template>

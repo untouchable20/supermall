@@ -11,5 +11,13 @@ module.exports = defineConfig({
         'views':'@/views',
       }
     }
+  },
+  lintOnSave:false,
+  css: {
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      }
+    }
   }
 })
