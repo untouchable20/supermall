@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div id="home">
     <nav-bar class="homeNav">
       <template v-slot:center><div >购物街</div></template>
@@ -32,59 +31,28 @@ import {getHomeMultidata} from "@/network/home";
 
 export default {
   name: "homePage",
-  components:{
+  components: {
     NavBar,
     TabControl,
     HomeSwiper,
     RecommendView,
     FeatureView
   },
-  data(){
-    return{
-      banners:[],
-      recommends:[],
-      goods:{
-        'pop':{page:0,list:[]},
-        'news':{page:0,list:[]},
-        'sell':{page:0,list:[]}
+  data() {
+    return {
+      banners: [],
+      recommends: [],
+      goods: {
+        'pop': {page: 0, list: []},
+        'news': {page: 0, list: []},
+        'sell': {page: 0, list: []}
       }
     }
   },
   created() {
     //创建完成后发送请求 函数内部返回的是 promise 请求
-    getHomeMultidata().then(res =>{
+    getHomeMultidata().then(res => {
       //取出请求里data的某个数组保留到组件里的变量
-=======
-
-    <nav-bar>
-      <template v-slot:center><div class="topTar">购物街</div></template>
-    </nav-bar>
-    <home-swiper :banners='banners'></home-swiper>
-    <recommend-view :recommends='recommends'></recommend-view>
-</template>
-
-<script>
-import NavBar from '@/components/common/navbar/NavBar'
-import HomeSwiper from '@/view/home/childComps/HomeSwiper.vue'
-import RecommendView from '@/view/home/childComps/RecommendView.vue'
-
-import {getHomeMultiData} from '@/network/home'
-export default {
-  name: "homePage",
-  data(){
-    return{
-        banners:[],
-        recommends:[]
-    }
-  },
-  components:{
-    NavBar,
-    HomeSwiper,
-    RecommendView
-  },
-  created() {
-    getHomeMultiData().then(res => {
->>>>>>> 139b1244f5b98a2cd33a9d3b84483f1687714f02
       let resdata = res.data.data
       this.banners = resdata.banner.list
       this.recommends = resdata.recommend.list

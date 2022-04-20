@@ -12,7 +12,6 @@ module.exports = defineConfig({
       }
     }
   },
-<<<<<<< HEAD
   lintOnSave:false,
   css: {
     loaderOptions: {
@@ -20,8 +19,6 @@ module.exports = defineConfig({
         javascriptEnabled: true
       }
     }
-  }
-=======
+  },
   lintOnSave: false
->>>>>>> 139b1244f5b98a2cd33a9d3b84483f1687714f02
 })

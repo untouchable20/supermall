@@ -9,9 +9,6 @@
     <div :style="activeStyle">
       <slot name="item-text"></slot>
     </div>
-
-<!--    <img src="../../assets/img/tabbar/home.svg" alt="">-->
-<!--    <div>首页</div>-->
   </div>
 </template>
 
@@ -32,11 +29,6 @@ export default {
   methods:{
     itemClick(){
       this.$router.replace(this.path)
-<<<<<<< HEAD
-      console.log(this.path)
-=======
-      console.log(this.path);
->>>>>>> 139b1244f5b98a2cd33a9d3b84483f1687714f02
     }
   },
   computed:{
