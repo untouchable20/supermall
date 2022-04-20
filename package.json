@@ -42,5 +42,17 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/untouchable20/supermall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/untouchable20/supermall/issues"
+  },
+  "homepage": "https://github.com/untouchable20/supermall#readme"
 }
