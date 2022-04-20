@@ -11,5 +11,6 @@ module.exports = defineConfig({
         'views':'@/views',
       }
     }
-  }
+  },
+  lintOnSave: false
 })
