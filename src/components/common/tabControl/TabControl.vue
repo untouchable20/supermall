@@ -30,6 +30,7 @@ export default {
     // 然后动态绑定class active 条件: index===currentSelect
     currentClick(index){
       this.currentSelect = index
+      this.$emit('tabClick',index)
     }
   }
 }

@@ -3,10 +3,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
 
-const HomePage = ()=>import('../view/home/home')
-const ClassifyItem = ()=>import('../view/classify/classify')
-const ShopCarItem = ()=>import('../view/shopcar/shopcar')
-const MineProfile = ()=>import('../view/mine/mine')
+const HomePage = ()=>import('@/view/home/home')
+const ClassifyItem = ()=>import('@/view/classify/classify')
+const ShopCarItem = ()=>import('@/view/shopcar/shopcar')
+const MineProfile = ()=>import('@/view/mine/mine')
 
 const routes = [
   {
