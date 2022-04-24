@@ -3,17 +3,24 @@
     <nav-bar class="homeNav">
       <template v-slot:center><div >购物街</div></template>
     </nav-bar>
+    <tab-control @tabClick="tabClick"
+                 :titles="['流行','新款','精选']"
+                 ref="tabControl1"
+                 :class="{fixed: isTabFixed}"
+                 class="tab-control"
+                 v-show="isTabFixed"></tab-control>
     <scroll class="content"
             ref="scroll"
             :probe-type="3"
             @scroll="contentScroll"
             :pull-up-load="true" @pulling-up="loadMore">
-        <home-swiper :banners="banners"></home-swiper>
+        <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
         <recommend-view :recommends="recommends"></recommend-view>
         <feature-view></feature-view>
         <tab-control @tabClick="tabClick"
-                     class="tab-control"
-                     :titles="['流行','新款','精选']"></tab-control>
+                     :titles="['流行','新款','精选']"
+                     ref="tabControl2"
+                     :class="{fixed: isTabFixed}"></tab-control>
         <good-list :goods="showGoods"></good-list>
     </scroll>
     <back-top @click.native="backTop" v-show="isShowBackTop"></back-top>
@@ -69,7 +76,9 @@ export default {
         'sell': {page: 0, list: []}
       },
       currentType:'pop',//默认显示的是流行
-      isShowBackTop:false //判断返回顶部显示
+      isShowBackTop:false,//判断返回顶部显示
+      tabOffsetTop:0,
+      isTabFixed:false
     }
   },
   created() {
@@ -80,6 +89,11 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
+
+
+  },
+  mounted() {
+
   },
   methods:{
     //进一步的封装网络请求 在methods里定义 在created里调用
@@ -118,6 +132,10 @@ export default {
           this.currentType = 'sell'
           break
       }
+      //保持选中的类型一致
+      this.$refs.tabControl1.currentSelect = index
+      this.$refs.tabControl2.currentSelect = index
+
     },
     //返回顶部  通过给scroll组件绑定一个ref 获取其里面的方法
     backTop(){
@@ -125,11 +143,19 @@ export default {
     },
     //绑定自定义事件获取position，然后判断显示隐藏
     contentScroll(position){
+      //判断backtop是否显示
       this.isShowBackTop = -position.y > 1000
+      //决定tabcontrol是否吸顶 (position:fixed) isTabFixed决定是否添加class
+      this.isTabFixed = (-position.y) > this.tabOffsetTop
     },
     //上拉加载更多 绑定自定义事件 再次调用请求数据参数为当前的type
     loadMore(){
       this.getHomeGoods(this.currentType)
+    },
+    //监听图片加载完成 获取距离顶部的高度
+    swiperImageLoad(){
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+      console.log(this.tabOffsetTop)
     }
   },
   computed:{
@@ -150,26 +176,29 @@ export default {
   text-align: center;
 }
 .homeNav{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*right: 0;*/
   background-color: #8cbb19;
   color: #fff;
-  z-index: 9;
+  z-index: 10;
 }
-
 .tab-control{
-  position: sticky;
-  top: 44px;
-  background-color: #fff;
+  position: relative;
   z-index: 9;
+  background-color: #fff;
 }
 .content{
-
   position: absolute;
   top: 44px;
   bottom: 49px;
-
+  overflow: hidden;
+}
+.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 44px;
 }
 </style>
