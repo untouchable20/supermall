@@ -3,35 +3,20 @@
     <nav-bar class="homeNav">
       <template v-slot:center><div >购物街</div></template>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control @tabClick="tabClick"
-                 class="tab-control"
-                 :titles="['流行','新款','精选']"></tab-control>
-    <good-list :goods="showGoods"></good-list>
-    <ul>
-      <li>撑开1</li>
-      <li>撑开2</li>
-      <li>撑开3</li>
-      <li>撑开4</li>
-      <li>撑开5</li>
-      <li>撑开6</li>
-      <li>撑开7</li>
-      <li>撑开8</li>
-      <li>撑开9</li>
-      <li>撑开10</li>
-      <li>撑开11</li>
-      <li>撑开12</li>
-      <li>撑开13</li>
-      <li>撑开14</li>
-      <li>撑开15</li>
-      <li>撑开16</li>
-      <li>撑开17</li>
-      <li>撑开18</li>
-      <li>撑开19</li>
-      <li>撑开20</li>
-    </ul>
+    <scroll class="content"
+            ref="scroll"
+            :probe-type="3"
+            @scroll="contentScroll"
+            :pull-up-load="true" @pulling-up="loadMore">
+        <home-swiper :banners="banners"></home-swiper>
+        <recommend-view :recommends="recommends"></recommend-view>
+        <feature-view></feature-view>
+        <tab-control @tabClick="tabClick"
+                     class="tab-control"
+                     :titles="['流行','新款','精选']"></tab-control>
+        <good-list :goods="showGoods"></good-list>
+    </scroll>
+    <back-top @click.native="backTop" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -41,9 +26,12 @@
 import NavBar from "@/components/common/navbar/NavBar";
 //导入中间导航栏
 import TabControl from "@/components/common/tabControl/TabControl";
-//导入显示的数据
+//导入显示的数据模块
 import GoodList from "@/components/content/goods/GoodList";
-
+//导入滚动模块
+import Scroll from "@/components/common/scroll/Scroll";
+//导入返回顶部
+import BackTop from "@/components/content/backTop/BackTop";
 
 //home 独有的组件
 //导入轮播图模块
@@ -58,12 +46,15 @@ import FeatureView from "@/view/home/childComps/FeatureView";
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
 
 
+
 export default {
   name: "homePage",
   components: {
     NavBar,
     TabControl,
     GoodList,
+    Scroll,
+    BackTop,
     HomeSwiper,
     RecommendView,
     FeatureView
@@ -77,7 +68,8 @@ export default {
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []}
       },
-      currentType:'pop'
+      currentType:'pop',//默认显示的是流行
+      isShowBackTop:false //判断返回顶部显示
     }
   },
   created() {
@@ -97,6 +89,7 @@ export default {
         let resdata = res.data.data
         this.banners = resdata.banner.list
         this.recommends = resdata.recommend.list
+
       })
     },
     //根据传入的类型 请求不同类型的list追加到goods里不同类型中的list
@@ -106,6 +99,8 @@ export default {
         let resdata = res.data.data
         this.goods[type].list.push(...resdata.list)
         this.goods[type].page += 1
+        //调用内部的完成上拉方法
+        this.$refs.scroll.finishPullUp()
       })
     },
 
@@ -123,10 +118,22 @@ export default {
           this.currentType = 'sell'
           break
       }
+    },
+    //返回顶部  通过给scroll组件绑定一个ref 获取其里面的方法
+    backTop(){
+      this.$refs.scroll.scrollTo(0,0,1000)
+    },
+    //绑定自定义事件获取position，然后判断显示隐藏
+    contentScroll(position){
+      this.isShowBackTop = -position.y > 1000
+    },
+    //上拉加载更多 绑定自定义事件 再次调用请求数据参数为当前的type
+    loadMore(){
+      this.getHomeGoods(this.currentType)
     }
   },
   computed:{
-    //通过计算属性返回要显示的类型数据
+    //通过计算属性计算当前的点击的类型来 决定要显示的类型数据
     showGoods(){
       return this.goods[this.currentType].list
     }
@@ -136,7 +143,8 @@ export default {
 
 <style scoped>
 #home{
-  padding-top: 44px;
+  height: 100vh;
+  position: relative;
 }
 #home div{
   text-align: center;
@@ -157,5 +165,11 @@ export default {
   background-color: #fff;
   z-index: 9;
 }
+.content{
 
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+
+}
 </style>
