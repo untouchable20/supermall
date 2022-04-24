@@ -104,6 +104,7 @@ export default {
         this.banners = resdata.banner.list
         this.recommends = resdata.recommend.list
 
+
       })
     },
     //根据传入的类型 请求不同类型的list追加到goods里不同类型中的list
