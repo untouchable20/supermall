@@ -7,15 +7,19 @@ const HomePage = ()=>import('@/view/home/home')
 const ClassifyItem = ()=>import('@/view/classify/classify')
 const ShopCarItem = ()=>import('@/view/shopcar/shopcar')
 const MineProfile = ()=>import('@/view/mine/mine')
-
+const Detail = ()=>import('@/view/detail/Detail')
 const routes = [
   {
     path:'',
-    redirect:'/home'
+    redirect:'/home',
+
   },
   {
     path:'/home',
-    component:HomePage
+    component:HomePage,
+    meta:{
+      keepalive:true
+    }
   },
   {
     path:'/classify',
@@ -28,6 +32,10 @@ const routes = [
   {
     path:'/mine',
     component:MineProfile
+  },
+  {
+    path: '/detail/:iid',
+    component:Detail
   }
 ]
 

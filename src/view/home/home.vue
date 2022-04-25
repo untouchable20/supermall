@@ -78,7 +78,8 @@ export default {
       currentType:'pop',//默认显示的是流行
       isShowBackTop:false,//判断返回顶部显示
       tabOffsetTop:0,
-      isTabFixed:false
+      isTabFixed:false,
+      saveY:0
     }
   },
   created() {
@@ -89,11 +90,13 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
-
-
   },
   mounted() {
-
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
+  },
+  unmounted() {
+    //离开时记录位置
+    this.saveY = this.$refs.scroll.getScrollY()
   },
   methods:{
     //进一步的封装网络请求 在methods里定义 在created里调用
@@ -154,7 +157,6 @@ export default {
     //监听图片加载完成 获取距离顶部的高度
     swiperImageLoad(){
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
-      console.log(this.tabOffsetTop)
     }
   },
   computed:{

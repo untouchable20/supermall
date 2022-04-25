@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <keep-alive exclude="Detail">
+        <component :is="Component"  v-if="$route.meta.keepalive"/>
+      </keep-alive>
+      <component :is="Component"  v-if="!$route.meta.keepalive"/>
+    </router-view>
     <main-tab-bar></main-tab-bar>
   </div>
 </template>
