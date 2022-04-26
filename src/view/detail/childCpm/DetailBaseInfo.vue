@@ -1,5 +1,5 @@
 <template>
-  <div class="base-info">
+  <div class="base-info" v-if="Object.keys(baseInfo).length !== 0">
     <div class="info-title">{{baseInfo.title}}</div>
     <div class="info-price">
       <span class="n-price">{{baseInfo.newPrice}}</span>
@@ -27,11 +27,12 @@ export default {
     baseInfo:{
       type:Object,
       default(){
-        return{
-
-        }
+        return{}
       }
     }
+  },
+  created() {
+
   }
 }
 </script>
@@ -45,7 +46,7 @@ export default {
 .info-title{
   font-size: 16px;
   font-weight: bold;
-  color: #8cbb19;
+
 }
 .info-price{
   margin-top: 8px;
@@ -74,7 +75,7 @@ export default {
   margin-top: 12px;
   font-size: 14px;
   display: flex;
-  color: #8cbb19;
+
   padding-bottom: 4px;
   justify-content: space-between;
   border-bottom: solid 2px rgba(100, 100, 100, .3);

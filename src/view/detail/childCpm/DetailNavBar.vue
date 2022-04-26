@@ -1,5 +1,5 @@
 <template>
-  <div id="detail">
+
     <nav-bar class="detail-navbar">
       <template v-slot:left >
         <div class="backArrow" @click="backClick">
@@ -15,7 +15,7 @@
         </div>
       </template>
     </nav-bar>
-  </div>
+
 </template>
 
 <script>

@@ -177,10 +177,10 @@ export default {
   text-align: center;
 }
 .homeNav{
-  /*position: fixed;*/
-  /*top: 0;*/
-  /*left: 0;*/
-  /*right: 0;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #8cbb19;
   color: #fff;
   z-index: 10;
