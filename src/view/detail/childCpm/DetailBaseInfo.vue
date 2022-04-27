@@ -46,7 +46,6 @@ export default {
 .info-title{
   font-size: 16px;
   font-weight: bold;
-
 }
 .info-price{
   margin-top: 8px;

@@ -1,6 +1,7 @@
 
 import {request} from "@/network/request";
 
+
 export function getHomeMultidata(){
   return request({
     url:'/home/multidata'
@@ -13,6 +14,17 @@ export function getHomeGoods(type,page){
     params:{
       type,page
     }
+  })
+}
+export function getRecommend(){
+  return request({
+    url:'/recommend'
+  })
+}
+
+export function getClassifyData(){
+  return request({
+    url:'/category'
   })
 }
 

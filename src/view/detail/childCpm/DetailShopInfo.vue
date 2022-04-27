@@ -45,7 +45,9 @@ export default {
 
 <style scoped>
 .shop-info{
-  margin-top: 20px;
+  padding: 20px 0;
+  border-bottom: 4px solid  rgba(100,100,100,.1);
+
 }
 .shopBaseInfo{
   padding: 0 20px;
@@ -63,7 +65,7 @@ export default {
   justify-content: space-around;
   padding: 20px 0;
 }
-.shop-sell,.shop-goods .count,.text{
+ .count,.text{
   text-align: center;
   margin: 5px 0;
   font-weight: bold;
