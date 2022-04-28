@@ -30,6 +30,7 @@ export default {
     // 然后动态绑定class active 条件: index===currentSelect
     currentClick(index){
       this.currentSelect = index
+      //提交事件，并把当前index的值作为值传到父组件
       this.$emit('tabClick',index)
     }
   }

@@ -77,9 +77,9 @@ export default {
       },
       currentType:'pop',//默认显示的是流行
       isShowBackTop:false,//判断返回顶部显示
-      tabOffsetTop:0,
-      isTabFixed:false,
-      saveY:0
+      tabOffsetTop:0,//保存距离顶部的
+      isTabFixed:false,//是否显示
+      saveY:0 //离开时记录位置
     }
   },
   created() {
@@ -134,7 +134,7 @@ export default {
           this.currentType = 'sell'
           break
       }
-      //保持选中的类型一致
+      //保持选中的类型一致 index
       this.$refs.tabControl1.currentSelect = index
       this.$refs.tabControl2.currentSelect = index
 
