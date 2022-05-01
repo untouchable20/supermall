@@ -10,7 +10,8 @@
        <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
        <good-list ref="recommend" :goods="recommendInfo"></good-list>
      </scroll>
-      <detail-bottom-bar></detail-bottom-bar>
+      <detail-bottom-bar class="bottom-bar" @addCart="addToCart"></detail-bottom-bar>
+      <back-top class="back-top" @click.native="backTop" v-show="isShowBackTop"></back-top>
     </div>
 </template>
 
@@ -25,14 +26,18 @@ import DetailParamInfo from "@/view/detail/childCpm/DetailParamInfo";
 import DetailCommentInfo from "@/view/detail/childCpm/DetailCommentInfo";
 import GoodList from "@/components/content/goods/GoodList";
 import DetailBottomBar from "@/view/detail/childCpm/DetailBottomBar";
+import BackTop from "@/components/content/backTop/BackTop";
 import Scroll from "@/components/common/scroll/Scroll";
 //导入网络请求 商品，商店，商品评论类用于保存数据
 import {getDetail,Goods,Shop,GoodsParam} from "@/network/detail";
+//导入混入封装
+import {backTopMixin} from '@/common/mixin'
 //导入评论请求
 import {getRecommend} from "@/network/home";
 
 export default {
   name: "DetailView",
+  mixins:[backTopMixin],
   data(){
     return{
       iid:null,
@@ -45,7 +50,8 @@ export default {
       commentInfo:{},
       recommendInfo:[],
       themeTopY:[],
-      currentIndex:null
+      currentIndex:null,
+
     }
   },
   components:{
@@ -58,6 +64,7 @@ export default {
     DetailCommentInfo,
     GoodList,
     DetailBottomBar,
+    BackTop,
     Scroll
   },
   created() {
@@ -84,8 +91,8 @@ export default {
         //获取navbar的offsetTop值，push到数组里
         this.themeTopY = []
         this.themeTopY.push(0)
-        this.themeTopY.push(this.$refs.param.$el.offsetTop - 25)
-        this.themeTopY.push(this.$refs.comment.$el.offsetTop - 25)
+        this.themeTopY.push(this.$refs.param.$el.offsetTop - 30)
+        this.themeTopY.push(this.$refs.comment.$el.offsetTop - 35)
         this.themeTopY.push(this.$refs.recommend.$el.offsetTop - 40)
         this.themeTopY.push(Number.MAX_VALUE)
       })
@@ -104,6 +111,7 @@ export default {
       console.log(index);
       this.$refs.scroll.scrollTo(0,-this.themeTopY[index],1000)
     },
+    //监听页面的滚动
     contentScroll(position){
       //获取y值  0 - 1 index : 0  1 - 2 index:1  2 - 3 index : 2  >3 index : 3
       const positionY = -position.y
@@ -130,6 +138,22 @@ export default {
           this.$refs.nav.currentIndex = this.currentIndex
         }
       }
+
+      //显示回到顶部
+      this.isShowBackTop = -position.y > 1000
+    },
+    //添加购物车
+    addToCart(){
+      //获取信息
+      const product = {}
+      product.image = this.topImage[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.iid = this.iid
+
+      //添加到购物车
+      this.$store.dispatch('addCart',product)
     }
   }
 }
@@ -154,5 +178,10 @@ export default {
   height: calc(100% - 44px);
   z-index: 9;
 }
-
+.back-top {
+  text-align: center;
+}
+.bottom-bar{
+  width: 100%;
+}
 </style>

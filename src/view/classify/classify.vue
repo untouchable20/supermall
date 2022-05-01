@@ -4,7 +4,7 @@
 
 <script>
 
-import {getClassifyData} from "@/network/home";
+// import {getClassifyData} from "@/network/home";
 
 export default {
   name: "classifyItem",
@@ -12,9 +12,9 @@ export default {
     return{}
   },
   created() {
-    getClassifyData().then(res=>{
-      console.log(res.data.data);
-    })
+    // getClassifyData().then(res=>{
+    //   console.log(res.data.data);
+    // })
   }
 }
 </script>
