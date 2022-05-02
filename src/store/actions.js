@@ -7,7 +7,7 @@ export  default {
   addCart(context,payload){
   //payload新添加的商品
   //判读新加入的是否重复 返回 true
-  let oldProduct = context.state.carList.find(item => item.iid === payload.iid)
+  let oldProduct = context.state.cartList.find(item => item.iid === payload.iid)
   //判断oldProduct
   if(oldProduct){
     context.commit(ADD_COUNTER,oldProduct)

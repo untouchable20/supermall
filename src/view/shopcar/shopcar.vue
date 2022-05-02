@@ -4,18 +4,22 @@
       <template v-slot:center><div>购物车({{cartLength}})</div></template>
     </nav-bar>
     <cart-list></cart-list>
+    <cart-bottom-bar></cart-bottom-bar>
   </div>
 </template>
 
 <script>
+//导入组件
 import NavBar from "@/components/common/navbar/NavBar";
 import CartList from "@/view/shopcar/cartCpms/CartList";
+import CartBottomBar from "@/view/shopcar/cartCpms/CartBottomBar";
 import {mapGetters} from "vuex"
 
 export default {
   name: "shopcarItem",
   components:{
     NavBar,
+    CartBottomBar,
     CartList
   },
   computed:{

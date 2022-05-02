@@ -1,13 +1,14 @@
 import {
   ADD_COUNTER,
   ADD_TO_CART
-} from './mutation-types'
+} from '@/store/mutation-types'
 
 export default {
   [ADD_COUNTER](state,payload){
     payload.count++
   },
   [ADD_TO_CART](state,payload){
-    state.carList.push(payload)
+    payload.checked = true
+    state.cartList.push(payload)
   }
 }
