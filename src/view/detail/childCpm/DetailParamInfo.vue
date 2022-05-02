@@ -61,7 +61,13 @@ export default {
 .info-img{
   width: 100%;
 }
+<<<<<<< HEAD
 .info-img img{
   width: 100%;
+=======
+.info-img > img{
+  width: 100%;
+  height: 300px;
+>>>>>>> 09d0336db2d1e9e1d9bacd50174cd5dfaf47704b
 }
 </style>
