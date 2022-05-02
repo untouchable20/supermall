@@ -1,9 +1,7 @@
 <template>
   <div class="cart-list">
     <scroll class="cart-list-scroll">
-<<<<<<< HEAD
       <cart-list-item v-for="(item,index) in cartList" :key="index" :item-info="item"></cart-list-item>
-=======
       <div class="cart-list-item" v-for="item in cartList" :key="item">
         <div class="select">
           <label for="select">
@@ -20,12 +18,10 @@
             <p class="goods-total">
               <span class="goods-price">￥{{item.price}}</span>
               <span class="goods-count">x{{item.count}}</span>
-              
             </p>
           </div>
         </div>
       </div>
->>>>>>> 09d0336db2d1e9e1d9bacd50174cd5dfaf47704b
     </scroll>
   </div>
 </template>
@@ -98,7 +94,7 @@ export default {
   width: 100%;
   color: #333;
   font-size: 15px;
-  
+
 }
 .goods-info .goods-desc{
   width: 100%;
