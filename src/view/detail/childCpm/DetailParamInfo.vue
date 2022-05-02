@@ -8,7 +8,7 @@
     </table>
 
     <table class="info-param">
-      <tr v-for="(info,index) in paramInfo.infos">
+      <tr v-for="(info,index) in paramInfo.infos" :key="index">
         <td class="info-param-key">{{info.key}}</td>
         <td class="info-value">{{info.value}}</td>
       </tr>
@@ -60,5 +60,9 @@ export default {
 }
 .info-img{
   width: 100%;
+}
+.info-img > img{
+  width: 100%;
+  height: 300px;
 }
 </style>
