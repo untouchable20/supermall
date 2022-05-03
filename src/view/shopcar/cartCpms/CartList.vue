@@ -2,26 +2,6 @@
   <div class="cart-list">
     <scroll class="cart-list-scroll">
       <cart-list-item v-for="(item,index) in cartList" :key="index" :item-info="item"></cart-list-item>
-      <div class="cart-list-item" v-for="item in cartList" :key="item">
-        <div class="select">
-          <label for="select">
-          <input type="checkbox" name="select" id="">
-          </label>
-        </div>
-        <div class="cart-goods-show">
-          <div class="goods-img">
-            <img :src="item.image" alt="">
-          </div>
-          <div class="goods-info">
-            <p class="goods-title">{{item.title}}</p>
-            <p class="goods-desc">{{item.desc}}</p>
-            <p class="goods-total">
-              <span class="goods-price">￥{{item.price}}</span>
-              <span class="goods-count">x{{item.count}}</span>
-            </p>
-          </div>
-        </div>
-      </div>
     </scroll>
   </div>
 </template>
@@ -49,8 +29,6 @@ export default {
 .cart-list{
   position: relative;
   height: 100vh;
-<<<<<<< HEAD
-=======
 }
 .cart-list-scroll{
   height: calc(100% - 93px);
@@ -111,11 +89,6 @@ export default {
 }
 .goods-total .goods-count{
   float: right;
->>>>>>> 09d0336db2d1e9e1d9bacd50174cd5dfaf47704b
-}
-.cart-list-scroll{
-  height: calc(100% - 93px);
-  overflow: hidden;
 }
 
 </style>
