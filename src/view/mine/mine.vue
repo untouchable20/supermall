@@ -1,4 +1,5 @@
 <template>
+<!--  后面两个可以封装为组件-->
   <div class="profile">
     <nav-bar>
       <template v-slot:center><div>我的档案</div></template>
