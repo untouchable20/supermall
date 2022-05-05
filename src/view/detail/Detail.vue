@@ -12,6 +12,7 @@
      </scroll>
       <detail-bottom-bar class="bottom-bar" @addCart="addToCart"></detail-bottom-bar>
       <back-top class="back-top" @click.native="backTop" v-show="isShowBackTop"></back-top>
+      <toast :message="message" :show="show"></toast>
     </div>
 </template>
 
@@ -28,12 +29,15 @@ import GoodList from "@/components/content/goods/GoodList";
 import DetailBottomBar from "@/view/detail/childCpm/DetailBottomBar";
 import BackTop from "@/components/content/backTop/BackTop";
 import Scroll from "@/components/common/scroll/Scroll";
+import Toast from "@/components/common/toast/Toast";
 //导入网络请求 商品，商店，商品评论类用于保存数据
 import {getDetail,Goods,Shop,GoodsParam} from "@/network/detail";
 //导入混入封装
 import {backTopMixin} from '@/common/mixin'
 //导入评论请求
 import {getRecommend} from "@/network/home";
+//导入mapActions辅助函数
+import {mapActions} from 'vuex'
 
 export default {
   name: "DetailView",
@@ -51,7 +55,8 @@ export default {
       recommendInfo:[],
       themeTopY:[],
       currentIndex:null,
-
+      message:'',
+      show:false
     }
   },
   components:{
@@ -65,7 +70,8 @@ export default {
     GoodList,
     DetailBottomBar,
     BackTop,
-    Scroll
+    Scroll,
+    Toast
   },
   created() {
     //保存传入的id
@@ -106,6 +112,8 @@ export default {
 
   },
   methods:{
+    //将actions里的方法展开
+    ...mapActions(['addCart']),
     //监听navbar点击 调用scroll里的滚动事件 参数y的值为themeTopY里的第index个值
     itemClick(index){
       console.log(index);
@@ -153,7 +161,19 @@ export default {
       product.iid = this.iid
 
       //添加到购物车
-      this.$store.dispatch('addCart',product)
+      // this.$store.dispatch('addCart',product).then(res=>{
+      //   console.log(res)
+      // })
+      this.addCart(product).then(res=>{
+        this.show = true
+        this.message = res
+
+        setTimeout(()=>{
+          this.show = false
+          this.message = ''
+        },2000)
+        console.log(res);
+      })
     }
   }
 }

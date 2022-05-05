@@ -22,9 +22,5 @@ export function getRecommend(){
   })
 }
 
-export function getClassifyData(){
-  return request({
-    url:'/category'
-  })
-}
+
 
