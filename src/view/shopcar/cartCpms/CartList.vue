@@ -29,11 +29,74 @@ export default {
 .cart-list{
   position: relative;
   height: 100vh;
+<<<<<<< HEAD
 
 }
 .cart-list-scroll{
   height: calc(100% - 93px);
   overflow: hidden;
+=======
+}
+.cart-list-scroll{
+  height: calc(100% - 93px);
+  overflow: hidden;
+}
+.cart-list-item{
+  display: flex;
+  height: 120px;
+  background-color:#fff;
+  padding: 10px;
+  border-bottom:rgba(100, 100, 100, .1) 3px solid;
+}
+.select {
+  line-height: 97px;
+}
+.cart-goods-show{
+  width: 100%;
+  overflow: hidden;
+}
+.goods-img{
+  float: left;
+  width: 25%;
+  padding-left: 5px;
+}
+.goods-img img{
+  width: 100%;
+  height: 90px;
+  border-radius: 5px;
+}
+.goods-info{
+  float: right;
+  width: 75%;
+  padding: 0 10px 0 5px;
+}
+.goods-info > .goods-title,.goods-desc{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.goods-info .goods-title{
+  width: 100%;
+  color: #333;
+  font-size: 15px;
+
+}
+.goods-info .goods-desc{
+  width: 100%;
+  color: gray;
+  font-size: 12px;
+  margin: 20px 0 20px 0;
+}
+.goods-total{
+  overflow: hidden;
+}
+.goods-total .goods-price{
+  float: left;
+  color: orange;
+}
+.goods-total .goods-count{
+  float: right;
+>>>>>>> 11765b83b65ef1905ebcf45aacbbb6ddf7f2aa47
 }
 
 

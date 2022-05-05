@@ -18,11 +18,9 @@
         </div>
       </div>
 </template>
-
 <script>
 
 import CheckButton from "@/components/content/checkButton/CheckButton";
-
 export default {
   name: "CartListItem",
   props:{
@@ -58,7 +56,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .cart-goods-show{
