@@ -12,17 +12,10 @@
 //导入组件
 import NavBar from "@/components/common/navbar/NavBar";
 import CartList from "@/view/shopcar/cartCpms/CartList";
-<<<<<<< HEAD
 
 import CartBottomBar from "@/view/shopcar/cartCpms/CartBottomBar";
-
-
 import Scroll from "@/components/common/scroll/Scroll";
 
-=======
-import CartBottomBar from "@/view/shopcar/cartCpms/CartBottomBar";
-import Scroll from "@/components/common/scroll/Scroll";
->>>>>>> 11765b83b65ef1905ebcf45aacbbb6ddf7f2aa47
 import {mapGetters} from "vuex"
 
 
@@ -32,10 +25,8 @@ export default {
     NavBar,
     CartBottomBar,
     CartList,
-<<<<<<< HEAD
-=======
     Scroll,
->>>>>>> 11765b83b65ef1905ebcf45aacbbb6ddf7f2aa47
+
 
   },
   computed:{
