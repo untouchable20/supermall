@@ -24,6 +24,7 @@ export default {
   },
   computed:{
     ...mapGetters(['cartList']),
+    //计算总价
     totalPrice(){
       return '￥' + this.cartList.filter(item => item.checked).
       reduce((preValue,item)=>{

@@ -13,7 +13,7 @@
     <div class="info-detail">
       <p>{{commentInfo.content}}</p>
       <div class="info-other">
-        <span class="date">{{commentInfo.created }}</span>
+        <span class="date">{{computedTime(commentInfo.created)}}</span>
         <span>{{commentInfo.style}}</span>
       </div>
       <div class="info-img">
@@ -38,10 +38,13 @@ export default {
   data(){
     return{ }
   },
-  filters:{
-    dateShow(value) {
-      let date = new Date(value * 1000);
-      return formatDate(date, "yyyy-MM-dd hh:mm:ss");
+  computed:{
+    //讲时间戳转为具体的时间
+    computedTime(){
+      return function(value){
+        let date = new Date(value * 1000);
+        return formatDate(date, "yyyy-MM-dd hh:mm:ss");
+      }
     }
   }
 }

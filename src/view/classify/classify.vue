@@ -34,10 +34,10 @@ export default {
   },
   created() {
     this.getCategoryTitle()
-    this.getCategoryInfo(3627)
-    getSubCategoryDetail("50003",'pop').then(res=>{
-      console.log(res)
-    })
+
+    // getSubCategoryDetail("50003",'pop').then(res=>{
+    //   console.log(res)
+    // })
   },
   methods:{
     //侧边栏
@@ -45,7 +45,12 @@ export default {
       getClassifyData().then(res=>{
         let resdata = res.data.data
         this.CategoryTitles = resdata.category.list
+        //在保存数据后 发送请求 请求第一个侧边栏的信息
+        this.$nextTick(()=>{
+          this.getCategoryInfo(this.CategoryTitles[0].maitKey)
+        })
       })
+
     },
     //每个侧边栏对应的信息
     getCategoryInfo(maitkey) {
@@ -53,6 +58,7 @@ export default {
         let resdata = res.data.data
         this.CategoryInfo = resdata.list
       })
+
     },
     navClick(index){
       this.getCategoryInfo(this.CategoryTitles[index].maitKey)

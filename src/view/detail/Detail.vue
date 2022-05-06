@@ -172,7 +172,6 @@ export default {
           this.show = false
           this.message = ''
         },2000)
-        console.log(res);
       })
     }
   }

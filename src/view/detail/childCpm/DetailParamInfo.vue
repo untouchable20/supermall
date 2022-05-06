@@ -62,9 +62,8 @@ export default {
   width: 100%;
 }
 
-
 .info-img img{
-  width: 100%;
+
   height: 300px;
 }
 </style>
