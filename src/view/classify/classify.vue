@@ -41,24 +41,32 @@ export default {
   },
   methods:{
     //侧边栏
-    getCategoryTitle(){
-      getClassifyData().then(res=>{
-        let resdata = res.data.data
-        this.CategoryTitles = resdata.category.list
-        //在保存数据后 发送请求 请求第一个侧边栏的信息
-        this.$nextTick(()=>{
-          this.getCategoryInfo(this.CategoryTitles[0].maitKey)
-        })
+    async getCategoryTitle(){
+      // getClassifyData().then(res=>{
+      //   let resdata = res.data.data
+      //   this.CategoryTitles = resdata.category.list
+      //   //在保存数据后 发送请求 请求第一个侧边栏的信息
+      //   this.$nextTick(()=>{
+      //     this.getCategoryInfo(this.CategoryTitles[0].maitKey)
+      //   })
+      // })
+      const {data : res} = await getClassifyData()
+      this.CategoryTitles = res.data.category.list;
+      // console.log(res)
+      await this.$nextTick(()=>{
+        this.getCategoryInfo(this.CategoryTitles[0].maitKey)
       })
-
     },
-    //每个侧边栏对应的信息
-    getCategoryInfo(maitkey) {
-      getSubCategory(maitkey).then(res => {
-        let resdata = res.data.data
-        this.CategoryInfo = resdata.list
-      })
-
+    //根据每个侧边栏对应的key渲染不同的内容
+    async getCategoryInfo(maitkey) {
+      // getSubCategory(maitkey).then(res => {
+      //   let resdata = res.data.data
+      //   this.CategoryInfo = resdata.list
+      //   console.log(res)
+      // })
+      const {data:res} = await getSubCategory(maitkey);
+      // console.log(res)
+      this.CategoryInfo = res.data.list;
     },
     navClick(index){
       this.getCategoryInfo(this.CategoryTitles[index].maitKey)

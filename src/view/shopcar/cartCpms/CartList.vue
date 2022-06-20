@@ -1,7 +1,9 @@
 <template>
   <div class="cart-list">
     <scroll class="cart-list-scroll">
-      <cart-list-item v-for="(item,index) in cartList" :key="index" :item-info="item"></cart-list-item>
+      <cart-list-item v-for="(item,index) in cartList"
+                      :key="index"
+                      :item-info="item"></cart-list-item>
     </scroll>
   </div>
 </template>

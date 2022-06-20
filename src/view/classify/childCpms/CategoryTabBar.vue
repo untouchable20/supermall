@@ -3,7 +3,8 @@
     <scroll class="scroll">
       <ul >
         <li v-for="(item,index) in titles" :key="index"
-            @click="itemClick(index)" :class="{active:index === isActive}">{{item.title}}</li>
+            @click="itemClick(index)"
+            :class="{active:index === isActive}">{{item.title}}</li>
       </ul>
     </scroll>
   </div>

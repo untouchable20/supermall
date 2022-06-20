@@ -1,17 +1,25 @@
 <template>
     <div id="detail">
-      <detail-nav-bar @itemClick="itemClick" class="detail-nav" ref="nav"></detail-nav-bar>
-     <scroll class="detail-scroll" ref="scroll" :probe-type="3" @scroll="contentScroll">
-       <detail-swiper :top-image="topImage"></detail-swiper>
-       <detail-base-info :base-info="goods"></detail-base-info>
-       <detail-shop-info class="detail-shop" :ShopInfo="shop"></detail-shop-info>
-       <detail-goods-info :detail-info="detailInfo"></detail-goods-info>
-       <detail-param-info ref="param" :param-info="paramInfo"></detail-param-info>
-       <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
-       <good-list ref="recommend" :goods="recommendInfo"></good-list>
-     </scroll>
-      <detail-bottom-bar class="bottom-bar" @addCart="addToCart"></detail-bottom-bar>
-      <back-top class="back-top" @click.native="backTop" v-show="isShowBackTop"></back-top>
+      <detail-nav-bar @itemClick="itemClick"
+                      class="detail-nav"
+                      ref="nav"></detail-nav-bar>
+       <scroll class="detail-scroll"
+               ref="scroll"
+               :probe-type="3"
+               @scroll="contentScroll">
+         <detail-swiper :top-image="topImage"></detail-swiper>
+         <detail-base-info :base-info="goods"></detail-base-info>
+         <detail-shop-info class="detail-shop" :ShopInfo="shop"></detail-shop-info>
+         <detail-goods-info :detail-info="detailInfo"></detail-goods-info>
+         <detail-param-info ref="param" :param-info="paramInfo"></detail-param-info>
+         <detail-comment-info ref="comment" :comment-info="commentInfo"></detail-comment-info>
+         <good-list ref="recommend" :goods="recommendInfo"></good-list>
+       </scroll>
+      <detail-bottom-bar class="bottom-bar"
+                         @addCart="addToCart"></detail-bottom-bar>
+      <back-top class="back-top"
+                @click.native="backTop"
+                v-show="isShowBackTop"></back-top>
       <toast :message="message" :show="show"></toast>
     </div>
 </template>
@@ -151,7 +159,7 @@ export default {
       this.isShowBackTop = -position.y > 1000
     },
     //添加购物车
-    addToCart(){
+    async addToCart(){
       //获取信息
       const product = {}
       product.image = this.topImage[0]
@@ -163,16 +171,16 @@ export default {
       //添加到购物车
       // this.$store.dispatch('addCart',product).then(res=>{
       //   console.log(res)
-      // })
-      this.addCart(product).then(res=>{
-        this.show = true
-        this.message = res
+      // }}
+      const res = await this.addCart(product);
+      this.show = true;
+      this.message = res
+      setTimeout(()=>{
+        this.show = false;
+        this.message = '';
+      },2000)
+      console.log(res)
 
-        setTimeout(()=>{
-          this.show = false
-          this.message = ''
-        },2000)
-      })
     }
   }
 }
